@@ -1,0 +1,111 @@
+<div>
+  <app-header></app-header>
+</div>
+<loader *ngIf="loading"></loader>
+<div class="dash" *ngIf="!loading">
+  <div class="landing-container">
+    <div class="landing-content">
+      <div class="row">
+        <div class="col-md-9 left-container">
+          <div class="row">
+            <div class="greeting col-md-9">
+              <div>
+                <img class="avatar-big" [src]="photo" />
+                <div class="namedate">
+                  <span class="user-name">{{ name }}<br /></span>
+                  <span class="datetoday">{{ today | dateSuffixFull }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row dashboard-row">
+            <div class="col-md-7 my-auto">
+              <span class="text-heading">Your site at a glance</span>
+            </div>
+            <div class="col-md-5">
+              <div class="go-to-dashboard">
+                <button class="go-to-dashboard-btn" routerLink="./dashboard">
+                  GO TO DASHBOARD
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="insights-container">
+              <div class="insights-column" *ngFor="let card of cards">
+                <app-insight-item-tile [data]="card"></app-insight-item-tile>
+              </div>
+            </div>
+          </div>
+
+          <div class="row recommendations">
+            <div class="card card-custom">
+              <div class="row">
+                <div class="col-md-2 recommendation-number my-auto">
+                  <span>05</span>
+                </div>
+                <div class="col-md-7 my-auto">
+                  <span class="recommendation-text"
+                    >New recommendations for the month of October</span
+                  >
+                </div>
+                <div class="col-md-3 text-center my-auto">
+                  <div class="go-to-dashboard">
+                  <button class="recommendation-btn">View All</button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="card card-custom">
+              <div class="yearly-usage mb-4">
+                <div class="card-heading">Monthly Usage</div>
+                <span class="widget-subtitle"
+                  >Comparison of month-on-month consumption</span
+                >
+              </div>
+              <app-predictive-range-chart [data]="monthUsageData"></app-predictive-range-chart>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card card-custom">
+            <div class="oakscore">
+              <div class="oak-score-badge">
+                <img
+                  class="img-res"
+                  src="/assets/icons/icon-oakscore-green.svg"
+                />
+              </div>
+              <div class="oak-score">
+                <div class="oak-score-label">OAK Score</div>
+                <div class="oak-score-text">
+                  {{ oakScore }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-custom">
+            <div class="card-heading">Consumption Overview</div>
+            <app-activity-gauge [data]="consumptionData"></app-activity-gauge>
+          </div>
+
+          <div class="card card-custom">
+            <div class="card-heading">Top Consuming Appliances</div>
+            <span class="widget-subtitle"
+              >A list of appliances in decreasing order of consumption</span
+            >
+            <app-appliance-consumption></app-appliance-consumption>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

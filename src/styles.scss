@@ -9,6 +9,13 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
@@ -40,11 +47,11 @@ $oak-insights-theme: mat.define-light-theme((
 // * { margin: 0; font-family: Avenir, 'Roman', Bold; }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Avenir-Roman' }
+body { margin: 0; font-family: 'Avenir-Roman'!important }
 
 @font-face {
-  font-family: Avenir-Black;
-  src: url(assets/Font/Avenir/Avenir-Black.woff2) format("woff2");
+  font-family: Gilroy-Bold;
+  src: url(assets/Font/Avenir/gilroy-extrabold-webfont.woff2) format("woff2");
 }
 
 @font-face {
@@ -53,21 +60,70 @@ body { margin: 0; font-family: 'Avenir-Roman' }
 }
 
 @font-face {
-  font-family: Avenir-Light;
-  src: url(assets/Font/Avenir/Avenir-Light.woff2) format("woff2");
+  font-family: Gilroy-Light;
+  src: url(assets/Font/Avenir/gilroy-light-webfont.woff2) format("woff2");
 }
 
-:root {--color1: #465DA4;
+:root {--color1: #465da4;
 --color2: #F3837A;
 --color3: #364096;
 --color4: #F3A7AB;
---color5: #7DC3BE;
+--color5: #70c49c;
 --color6: #F8A992;
 --color7: #FCC294;
 --color8: #4164AD;
+--color9: #444444;
+--color10: #6b6b6b;
+--color11: #bababb;
+--color12: #eeeeee;
+--heatmap-color1: #63c5bf;
+--heatmap-color2: #82c67c;
+--heatmap-color3: #f2c853;
+--heatmap-color4: #ecab5c;
+--heatmap-color5: #ee6259;
+
 --fontRegular: 'Avenir-Roman';
---fontBold: 'Avenir-Black';
---fontLight: 'Avenir-Light';
+--fontBold: 'Gilroy-Bold';
+--fontLight: 'Gilroy-Light';
 
 }
+
+.highcharts-credits{
+  visibility:hidden;
+}
+
+.app-container {
+  margin-left: 2rem;
+  margin-right: 1rem;
+
+}
+
+.bs-datepicker-body table td.week span 
+{
+  color: var(--color3) !important; 
+}
+
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-head,
+.bs-datepicker-head, .bs-datepicker button:active,
+.bs-datepicker-body table td.selected span,
+.bs-datepicker-body table td span[class*="select-"]:after,
+.bs-datepicker-body table td[class*="select-"] span:after,
+.bs-datepicker-body table td.active-week span:hover 
+{
+  background-color: var(--color3)!important; 
+}
+
+@media only screen and (min-width: 992px) {
+  bs-datepicker-container{
+    left: 10px !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  bs-datepicker-container{
+    left: 0 !important;
+  }
+}
+//bs-datepicker-container{ transform: scale(1,1) !important; top: 118px !important; left: 200 !important; right: 0 !important; width: fit-content !important; margin-left: auto !important; margin-right: auto !important; } 
+
 

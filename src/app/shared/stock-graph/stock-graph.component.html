@@ -1,0 +1,57 @@
+<div class="row mb-4">
+  <div class="col-lg-6 col-xl-7">
+      <div class="card-heading" *ngIf ="selectedGraph == 'phase'">Phase Distribution (Zoomable Graph)</div>
+      <div class="card-heading" *ngIf ="selectedGraph == 'consumption'">Energy Consumption (Zoomable Graph)</div>
+      
+      <span class="widget-subtitle" *ngIf ="selectedGraph == 'phase'">View the consumption pattern for each of the three phases</span>
+      <span class="widget-subtitle" *ngIf ="selectedGraph == 'consumption'">View the energy signature of your site</span>
+  </div>
+  <div class="col-md-2 text-right my-auto">
+    <div class="open-closed">
+      <select class="form-select monthPicker" [(ngModel)]="selectedType" (change)="updateType()">
+        <option *ngFor="let type of typeList" [value]="type">{{
+          type
+        }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-lg-4 col-xl-3 my-auto">
+          <div class="input-group">
+                  <span class="form-control"
+                   [(ngModel)]="selectedDate" [(bsValue)]="selectedDate" (bsValueChange)="updateMonth()"
+                   #dp="bsDatepicker" bsDatepicker
+                   [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
+                   [minDate]="minDate"
+                   [maxDate]="maxDate">{{selectedMonth.month}} {{selectedMonth.year}}</span>
+                  <div class="input-group-append">
+                   <button class="btn btn-toggle"
+                      (click)="dp.toggle()"
+                      [attr.aria-expanded]="dp.isOpen"
+                      type="button">Change
+                    </button>
+                  </div>
+          </div>
+  </div>
+</div>
+<div [chart]="chart"></div>
+<div class="operating-hours-totals" *ngIf ="selectedGraph == 'consumption'">
+    <div class="row">
+      <div
+        class="col-md-4"
+        *ngFor="let consumptionTotal of consumptionTotals"
+      >
+        <div class="row">
+          <div class="col-md-6 text-right my-auto">
+            <div class="total-text">{{ consumptionTotal.type }}<br/></div>
+          </div>
+          <div class="col-md-6 text-left my-auto">
+            <div class="total-value" [style.color]="consumptionTotal.color">
+              {{ consumptionTotal.value }}</div
+            >
+            <div class="total-time">
+              {{ consumptionTotal.date }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
