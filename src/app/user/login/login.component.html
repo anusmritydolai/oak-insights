@@ -1,8 +1,11 @@
-<img
-  src="/assets/OakInsightsLogo.svg"
-  style="margin-bottom: 40px; width: 512px"
-/>
-<input type="text" placeholder="Username"/>
-<input type="password" placeholder="Password"/>
-<button mat-raised-button class="login">LOGIN</button>
-<h2 class="password">Forgot Password</h2>
+<div class="login-container">
+    <img class="oak-logo" src="/assets/OakInsightsLogo.svg"/>
+
+    <form [formGroup]="formGroup" class="login-form" (ngSubmit)="login()">
+        <input type="text" placeholder="Username" formControlName="email"/>
+        <input type="password" placeholder="Password" formControlName="password"/>
+        <button mat-raised-button class="btn-login" type="submit">Login</button>
+    </form>
+    
+    <a href="#" class="link-secondary">Forgot Password</a>
+</div>

@@ -1,0 +1,40 @@
+
+
+
+.card-heading {
+  font: var(--fontBold);
+  font-size: 1.5vw;
+  font-weight: 800;
+}
+
+.widget-subtitle {
+  font-size: 1vw;
+  color: gray;
+  margin-bottom: 2rem;
+}
+
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+
+.operating-hours-totals {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .total-text {
+    font-size: 1rem;
+    color: gray;
+  }
+  
+  .total-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+  .total-time{
+    font-size: 0.8rem;
+    color:var(--color10);
+  }

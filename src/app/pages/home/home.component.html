@@ -1,0 +1,123 @@
+<loader *ngIf="loading"></loader>
+
+<div class="app-container" *ngIf="!loading">
+  <div class="row nomargin top-container">
+    <div class="row">
+      <div class="col-md-9 my-auto">
+        <h2>Insights at a Glance</h2>
+      </div>
+      <div class="col-md-3 my-auto">
+        <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
+          <option *ngFor="let month of monthList" [value]="month">{{
+            month
+          }}</option>
+        </select>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-8 insights-container">
+            <div class="insights-column" *ngFor="let card of cards">
+              <app-insight-item-tile [data]="card"></app-insight-item-tile>
+            </div>
+          </div>
+          <div class="col-md-4 activity-gauge-container">
+            <div class="card card-custom">
+              <div class="card-heading">Consumption Overview</div>
+              <app-activity-gauge [data]="consumptionData"></app-activity-gauge>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-custom">
+              <div class="card-heading">Calendar Heat Map</div>
+              <span class="widget-subtitle"
+                >Compare areas of high consumption with respect to other
+                day</span
+              >
+              <app-heatmap [data]="heatMapData"></app-heatmap>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-custom">
+          <div class="oakscore">
+            <div class="oak-score-badge">
+              <img
+                class="img-res"
+                src="/assets/icons/icon-oakscore-green.svg"
+              />
+            </div>
+            <div class="oak-score">
+              <div class="oak-score-label">OAK Score</div>
+              <div class="oak-score-text">
+                {{ oakScore }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-custom">
+          <div class="card-heading">Current Weather</div>
+          <app-weather [data]="weatherData"></app-weather>
+        </div>
+
+        <div class="card card-custom">
+          <div class="card-heading">List of Events</div>
+          <span class="widget-subtitle">A list of non-trading days</span>
+          <div class="events-list" *ngFor="let d of data" [style.color]="d.type==='User' ? 'var(--color2)' : 'black'">
+            {{ d.date | dateSuffix }}
+            <span>
+              {{ d.name }}
+            </span>
+          </div>
+          <div class="add-new-event">
+            <button class="add-new-btn" (click)="openDialog()">Add an Event</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bottom-container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card card-custom">
+          <div class="card-heading">Operating Hours Analysis</div>
+          <span class="widget-subtitle"
+            >Comparison of energy consumption during Trading and Nontrading for
+            each weekday</span
+          >
+          <app-stacked-bar-chart
+            [data]="operatingHoursData"
+          ></app-stacked-bar-chart>
+        </div>
+
+        <div class="card card-custom">
+          <app-chart [data]="hourlyCostData" [showButtons]=true></app-chart>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card card-custom">
+          <div class="card-heading">Top Consuming Appliances</div>
+          <span class="widget-subtitle"
+            >A list of appliances in decreasing order of consumption</span
+          >
+          <app-appliance-consumption></app-appliance-consumption>
+        </div>
+
+        <div class="card card-custom">
+          <div class="card-heading">News Updates</div>
+          <div *ngFor="let news of newsData">
+            <app-google-news [data]="news"></app-google-news>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

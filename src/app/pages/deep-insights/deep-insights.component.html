@@ -1,0 +1,31 @@
+<div class="app-container">
+  <div class="row">
+    <div class="col-md-9 my-auto">
+      <h2>Deep Insights</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom">
+        <app-stock-graph [data]="consumption"></app-stock-graph>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom">
+        <app-load-curve [data]="loadCurveData"></app-load-curve>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom">
+        <app-min-max [data]="minMaxData"></app-min-max>
+      </div>
+    </div>
+  </div>
+</div>
